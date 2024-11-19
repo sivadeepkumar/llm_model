@@ -1,0 +1,198 @@
+{
+    "info": {
+        "name": "AI Models API",
+        "description": "Postman collection for the AI Models Flask app with OpenAI and AWS endpoints.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/health",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["health"]
+                }
+            }
+        },
+        {
+            "name": "Bedrock Query",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"What is the knowledge base about?\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/bedrock",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "bedrock"]
+                }
+            }
+        },
+        {
+            "name": "Update Vector Base",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/update_vector_base",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "update_vector_base"]
+                }
+            }
+        },
+        {
+            "name": "Mistral Response",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"What is Mistral used for?\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/mistral_response",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "mistral_response"]
+                }
+            }
+        },
+        {
+            "name": "Llama Response",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Explain Llama's use cases.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/llama_response",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "llama_response"]
+                }
+            }
+        },
+        {
+            "name": "Llama Source",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"What is the source of this document?\",\n  \"source\": \"This is the content of the document.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/llama/source",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "llama", "source"]
+                }
+            }
+        },
+        {
+            "name": "Mistral Source",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Explain this document\",\n  \"source\": \"Document content for testing Mistral source retrieval.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/mistral/source",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "mistral", "source"]
+                }
+            }
+        },
+        {
+            "name": "Mistral Form",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Create a form\",\n  \"source\": \"Form-related documents\",\n  \"type\": \"create\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/mistral/form",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "mistral", "form"]
+                }
+            }
+        },
+        {
+            "name": "Llama Form",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Update a form\",\n  \"source\": \"Form-related documents\",\n  \"type\": \"update\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/amazon_model/llama/form",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["amazon_model", "llama", "form"]
+                }
+            }
+        }
+    ]
+}

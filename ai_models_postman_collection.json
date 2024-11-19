@@ -1,0 +1,162 @@
+{
+    "info": {
+        "name": "AI Models API",
+        "description": "Postman collection for the AI Models Flask app",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/health",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["health"]
+                }
+            }
+        },
+        {
+            "name": "OpenAI - Cryoport",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"What is Cryoport used for?\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/open_ai_model/cryoport/text-generation",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["open_ai_model", "cryoport", "text-generation"]
+                }
+            }
+        },
+        {
+            "name": "OpenAI - Real Estate",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Tell me about Purva Park Hill.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/open_ai_model/real-estate/text-generation",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["open_ai_model", "real-estate", "text-generation"]
+                }
+            }
+        },
+        {
+            "name": "OpenAI - Webkorps",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Explain the leave policy of Webkorps.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/open_ai_model/webkorps/text-generation",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["open_ai_model", "webkorps", "text-generation"]
+                }
+            }
+        },
+        {
+            "name": "OpenAI - AssetPanda",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"How do I track a record in AssetPanda?\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/open_ai_model/openai_response",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["open_ai_model", "openai_response"]
+                }
+            }
+        },
+        {
+            "name": "OpenAI - Source-based Query",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"What is the purpose of the document?\",\n  \"source\": \"This is the source content for testing.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/open_ai_model/openai/source",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["open_ai_model", "openai", "source"]
+                }
+            }
+        },
+        {
+            "name": "OpenAI - Form Query",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"query\": \"Create the user registration form\",\n  \"source\": \"The document contains form fields for registration, login, and password reset.\",\n  \"type\": \"create\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/open_ai_model/openai/form",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["open_ai_model", "openai", "form"]
+                }
+            }
+        }
+    ]
+}
+
