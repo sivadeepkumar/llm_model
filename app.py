@@ -15,6 +15,16 @@ logger = logging.getLogger(__name__)
 ai_app = Flask(__name__)
 CORS(ai_app)
 
+CORS(ai_app, resources={
+    r"/*": {
+        "origins": "*",  # Allow all origins
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "expose_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
+
 
 ai_app.register_blueprint(amazon_path, url_prefix='/amazon_model')
 ai_app.register_blueprint(meta_path, url_prefix='/meta')
