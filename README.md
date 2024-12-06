@@ -1,51 +1,149 @@
-# Project README
+# Flask-based NLP Web Services
 
-This repository contains several Flask-based web services that leverage different natural language processing (NLP) models and tools for various tasks. Below is an overview of each project included in this repository along with their functionalities and usage instructions.
+This repository provides Flask-based web services for various Natural Language Processing (NLP) tasks. Each service is built to leverage different AI/ML models and APIs to process text, provide intelligent responses, and perform document search and embedding operations.
 
-## 1. Llama Index - Query Engine
+## Features
 
-This project implements a Flask-based web service that utilizes the LLama Index for efficient querying of documents. The LLama Index integrates LLama2, Hugging Face Embeddings, and other tools for text processing and searching.
+- Integration with **LLama Index** for efficient document querying.
+- Conversational AI using **OpenAI GPT-3.5**.
+- Sentence embeddings via **Hugging Face Sentence Transformers**.
+- Text processing and NLP services with **Amazon Comprehend**.
+- Support for custom LLMs like **Mistral** and **Llama3**, powered by Amazon Bedrock.
 
-### Usage Instructions
+## Installation and Setup
 
-1. Install the required dependencies listed in the `requirements.txt` file.
-2. Run the Flask app using `python app.py`.
-3. Send POST requests to the `/query` endpoint with a JSON payload containing the 'query' key to retrieve relevant information from the document index.
+Follow these steps to set up and run the project:
 
-## 2. OpenAI Chat - Conversational Model
+### 1. Install Dependencies
 
-The OpenAI Chat project integrates the OpenAI GPT-3.5 model for conversational AI capabilities. It provides an API endpoint for generating responses based on user queries using the OpenAI model.
+Install the necessary Python libraries from the `requirements.txt` file:
 
-### Usage Instructions
+```bash
+pip install -r requirements.txt
+```
 
-1. Ensure you have an OpenAI API key and set it in the environment variable `OPENAI_API_KEY`.
-2. Install the required dependencies listed in the `requirements.txt` file.
-3. Run the Flask app using `python app.py`.
-4. Send POST requests to the `/query` endpoint with a JSON payload containing the 'query' key to generate responses using the OpenAI model.
+### 2. Set Environment Variables
+Set up the required environment variables for model credentials and configurations:
 
-## 3. Sentence Transformer - Embedding Model
+export LANGCHAIN_API_KEY="your_langchain_api_key"
+export OPENAI_API_KEY="your_openai_api_key"
+export MODEL_BIN="mistral-7b-instruct-v0.1.Q4_0"  # Example: "gpt4all-falcon-newbpe-q4_0"
+export kb_id="your_kb_id"
 
-The Sentence Transformer project implements a web service that utilizes the Hugging Face Sentence Transformers for generating sentence embeddings. It provides an API endpoint for computing embeddings for input sentences.
+3. Run the Application
+Execute the main Flask application:
 
-### Usage Instructions
+'''python app.py'''
 
-1. Install the required dependencies listed in the `requirements.txt` file.
-2. Run the Flask app using `python app.py`.
-3. Send POST requests to the `/embed` endpoint with a JSON payload containing the 'sentence' key to compute embeddings for the input sentences.
 
-## 4. Amazon Comprehend - NLP Service
+4. Update Vector Database (Required for Document Search)
+To initialize and update the vector database with your sample_data, make a GET request to the /update_vector_base endpoint:
+'''
+curl -X GET http://localhost:5000/update_vector_base
+'''
 
-The Amazon Comprehend project integrates the Amazon Comprehend service for natural language processing tasks. It provides endpoints for querying knowledge bases and extracting information using the Amazon Comprehend API.
+Endpoints
+1. Health Check
+Endpoint: /health
+Method: GET
+Description: Check the health status of the application.
+Response:{
+  "status": "OK"
+}
 
-### Usage Instructions
 
-1. Install the required dependencies listed in the `requirements.txt` file.
-2. Set up AWS credentials and ensure the `boto3` library can access the Amazon Comprehend service.
-3. Run the Flask app using `python app.py`.
-4. Hit GET Method "/update_vector_base" so then it will update or train the data(sample_data) into the models then it will response with query.
-5. Send POST requests to the `/bedrock` and `/sample` endpoints with JSON payloads containing the 'query' key for querying knowledge bases and obtaining responses from Amazon Comprehend.
+2. Mistral Model Response
+Endpoint: /mistral_response
+Method: POST
+Description: Get responses from the Mistral model using user queries.
+Request Body:{
+  "query": "Your question here"
+}
+Response:
+{
+  "status": "Success",
+  "Response": "Model response here"
+}
 
----
+3. Llama3 Model Response
+Endpoint: /llama_response
+Method: POST
+Description: Get responses from the Llama3 model using user queries.
+Request Body:
 
-Feel free to expand on these instructions with details on deployment, additional configurations, or any specific usage guidelines for each project.
-# llm_model
+json
+Copy code
+{
+  "query": "Your question here"
+}
+Response:
+
+json
+Copy code
+{
+  "status": "Success",
+  "Response": "Model response here"
+}
+4. Bedrock Knowledge Base
+Endpoint: /bedrock
+Method: POST
+Description: Query a specific knowledge base using Amazon Bedrock.
+Request Body:
+
+json
+Copy code
+{
+  "query": "Your question here"
+}
+Response:
+
+json
+Copy code
+{
+  "status": "Success",
+  "Response": "Knowledge base response here"
+}
+5. Custom Sources
+Llama3 Model with Source
+Endpoint: /llama/source
+Method: POST
+Description: Query Llama3 with a custom source.
+Request Body:
+
+json
+Copy code
+{
+  "query": "Your question here",
+  "source": "Custom text source here"
+}
+Mistral Model with Source
+Endpoint: /mistral/source
+Method: POST
+Description: Query Mistral with a custom source.
+Request Body:
+
+json
+Copy code
+{
+  "query": "Your question here",
+  "source": "Custom text source here"
+}
+Project Structure
+bash
+Copy code
+.
+├── app.py                  # Main application file
+├── requirements.txt        # Dependencies
+├── sample_data/            # Directory containing sample PDFs and indexes
+├── helper.py               # Utility functions for Bedrock agent
+├── .env                    # Environment variables (optional)
+└── README.md               # Documentation
+Requirements
+Python 3.8+
+AWS credentials for accessing Amazon services
+API keys for LangChain and OpenAI
+Local or cloud GPU for large model inference
+Notes
+Always update the vector database with the /update_vector_base endpoint before querying.
+Configure the .env file for storing sensitive API keys and model configurations securely.
+Ensure AWS credentials are correctly set up for accessing Amazon Comprehend and Bedrock services.
