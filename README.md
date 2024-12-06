@@ -42,7 +42,8 @@ The Amazon Comprehend project integrates the Amazon Comprehend service for natur
 1. Install the required dependencies listed in the `requirements.txt` file.
 2. Set up AWS credentials and ensure the `boto3` library can access the Amazon Comprehend service.
 3. Run the Flask app using `python app.py`.
-4. Send POST requests to the `/bedrock` and `/sample` endpoints with JSON payloads containing the 'query' key for querying knowledge bases and obtaining responses from Amazon Comprehend.
+4. Hit GET Method "/update_vector_base" so then it will update or train the data(sample_data) into the models then it will response with query.
+5. Send POST requests to the `/bedrock` and `/sample` endpoints with JSON payloads containing the 'query' key for querying knowledge bases and obtaining responses from Amazon Comprehend.
 
 ---
 
